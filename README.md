@@ -322,4 +322,4 @@ usage metrics via bStats (opt out in `config.yml`).
   <img src="project/assets/divider.svg" height="22" alt="">
 </p>
 
-<p align="center"><sub><b>MENTAL</b> by <a href="https://github.com/owengregson">@owengregson</a></sub></p>
+<p align="center"><sub><b>BattleMotion</b> by <a href="https://github.com/owengregson">@owengregson</a></sub></p>
