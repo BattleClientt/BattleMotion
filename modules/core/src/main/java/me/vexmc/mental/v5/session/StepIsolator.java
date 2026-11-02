@@ -94,7 +94,7 @@ public final class StepIsolator {
         throttle.suppressed = 0;
         throttle.lastLogNanos = now;
         throttle.everLogged = true;
-        String message = "Mental session tick step '" + step + "' threw for player " + id
+        String message = "Battle Motion session tick step '" + step + "' threw for player " + id
                 + (suppressed > 0 ? " (" + suppressed + " suppressed since the last line)" : "")
                 + " — ledger decay and the view publish are protected; this step's effect"
                 + " was skipped this tick. This should never happen; please report it.";

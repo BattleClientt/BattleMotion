@@ -1,42 +1,71 @@
-name: Mental
+name: BattleMotion
 version: '${version}'
 main: me.vexmc.mental.v5.MentalPluginV5
 api-version: '${apiVersion}'
 folia-supported: true
-description: Classic 1.7/1.8 combat for modern servers — era knockback and hit registration, latency compensation, and an optional full 1.8 ruleset.
-authors: [owengregson]
-website: https://github.com/owengregson/Mental
+description: Battle Motion — classic 1.7/1.8 combat for modern servers — era knockback and hit registration, latency compensation, and an optional full 1.8 ruleset.
+authors: [BattleClient, owengregson]
+website: https://github.com/BattleClientt/battlemotion
 # Optional — the kill-title death effect and GUI text render %placeholders%
-# through PlaceholderAPI when it is present. Mental never build-depends on it;
+# through PlaceholderAPI when it is present. Battle Motion never build-depends on it;
 # absent, the raw text is shown untouched (zero-touch). Soft-depend so PAPI
-# loads first when installed, and Mental still loads fine when it is not.
+# loads first when installed, and Battle Motion still loads fine when it is not.
 softdepend: [PlaceholderAPI]
 
 commands:
-  mental:
-    description: Open the Mental management menu in-game; reload the config from the console; /mental debug subscribe streams debug output to your chat.
-    aliases: [mtl]
-    permission: mental.command.use
+  battlemotion:
+    description: Open the Battle Motion management menu in-game; reload the config from the console; /battlemotion debug subscribe streams debug output to your chat.
+    # `mental` and `mtl` are kept as aliases so existing muscle memory, scripts
+    # and docs from the upstream Mental plugin keep working.
+    aliases: [mental, mtl]
+    permission: battlemotion.command.use
 
 permissions:
-  mental.*:
-    description: Grants every Mental permission.
+  battlemotion.*:
+    description: Grants every Battle Motion permission.
     default: op
     children:
+      battlemotion.command.use: true
+      battlemotion.command.reload: true
+      battlemotion.command.debug: true
+  battlemotion.command.use:
+    # Opens the in-game management menu — every setting (modules, the global
+    # knockback profile, compatibility, debug) is administered there.
+    description: Open the Battle Motion management menu.
+    default: op
+  battlemotion.command.reload:
+    description: Reload the configuration (console fallback — the menu has a reload button).
+    default: op
+  battlemotion.command.debug:
+    # Streams verbose debug lines to the admin's own chat (/battlemotion debug
+    # subscribe, or the Debug menu tile) — the player-facing half of the debug
+    # sink model. Cleared on quit.
+    description: Subscribe your chat to Battle Motion's verbose debug output.
+    default: op
+
+  # Legacy upstream (Mental) nodes. Kept so servers that already granted
+  # mental.* through a permissions plugin keep working: the command checks the
+  # new node OR the legacy one, and the legacy wildcard implies the new nodes.
+  mental.*:
+    description: Legacy alias — grants every Battle Motion permission.
+    default: false
+    children:
+      battlemotion.*: true
       mental.command.use: true
       mental.command.reload: true
       mental.command.debug: true
   mental.command.use:
-    # Opens the in-game management menu — every setting (modules, the global
-    # knockback profile, compatibility, debug) is administered there.
-    description: Open the Mental management menu.
-    default: op
+    description: Legacy alias of battlemotion.command.use.
+    default: false
+    children:
+      battlemotion.command.use: true
   mental.command.reload:
-    description: Reload the configuration (console fallback — the menu has a reload button).
-    default: op
+    description: Legacy alias of battlemotion.command.reload.
+    default: false
+    children:
+      battlemotion.command.reload: true
   mental.command.debug:
-    # Streams verbose debug lines to the admin's own chat (/mental debug
-    # subscribe, or the Debug menu tile) — the player-facing half of the debug
-    # sink model. Cleared on quit.
-    description: Subscribe your chat to Mental's verbose debug output.
-    default: op
+    description: Legacy alias of battlemotion.command.debug.
+    default: false
+    children:
+      battlemotion.command.debug: true

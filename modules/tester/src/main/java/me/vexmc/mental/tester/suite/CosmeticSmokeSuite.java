@@ -334,7 +334,7 @@ public final class CosmeticSmokeSuite {
     private static void toggleModule(TestContext context, String id, boolean enabled) throws Exception {
         Feature feature = Feature.byModuleId(id)
                 .orElseThrow(() -> new AssertionError("unknown module id '" + id + "'"));
-        context.syncRun(() -> ((MentalPluginV5) Bukkit.getPluginManager().getPlugin("Mental"))
+        context.syncRun(() -> ((MentalPluginV5) Bukkit.getPluginManager().getPlugin("BattleMotion"))
                 .management().setModuleEnabled(feature, enabled));
         context.awaitTicks(1);
     }

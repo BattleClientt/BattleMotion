@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
  *
  * <p>Sources: {@code zt.java:22,26,27,28} (1.8.9 Items) and
  * {@code zw.java:641} (1.8.9 EntityHuman food-eat path), cited in
- * {@code docs/superpowers/plans/2026-06-14-ocm-ground-truth.md §6}.</p>
+ * the OCM ground-truth notes (§6).</p>
  *
  * <p>Using plain String keys (not {@code PotionEffectType}) keeps this
  * class free of the Bukkit server registry — it runs in a plain JUnit

@@ -57,10 +57,10 @@ public final class MentalTesterPlugin extends JavaPlugin {
         // pass when they too expect "0", which they never do under the gate.
         String nonce = System.getProperty("mental.tester.nonce", "0");
 
-        MentalPluginV5 mental = (MentalPluginV5) getServer().getPluginManager().getPlugin("Mental");
+        MentalPluginV5 mental = (MentalPluginV5) getServer().getPluginManager().getPlugin("BattleMotion");
         if (mental == null) {
-            getLogger().severe("Mental is not installed — cannot test");
-            TestResultWriter.write(this, false, List.of("Mental plugin missing"), nonce);
+            getLogger().severe("Battle Motion is not installed — cannot test");
+            TestResultWriter.write(this, false, List.of("Battle Motion plugin missing"), nonce);
             getServer().shutdown();
             return;
         }

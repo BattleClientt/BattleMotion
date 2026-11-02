@@ -41,7 +41,7 @@ tasks.processResources {
 }
 
 tasks.shadowJar {
-    archiveBaseName.set("MentalTester")
+    archiveBaseName.set("BattleMotionTester")
     // Staged out of build/libs: the shaded v61 tester jar is now an intermediate of the
     // mega-jar pipeline (D-4). The final glob-visible MentalTester-<version>.jar is the
     // mega jar emitted by the shade task below.
@@ -115,7 +115,7 @@ downgradeMegaJar.configure {
     // fully functional, since v52 is the tested legacy base). See the Phase 1 outcome log.
     multiReleaseOriginal.set(true)
     destinationDirectory.set(layout.buildDirectory.dir("jvmdg-stage"))
-    archiveBaseName.set("MentalTester")
+    archiveBaseName.set("BattleMotionTester")
     archiveClassifier.set("downgraded")
     // The warning capture listens on Gradle's GLOBAL console stream, so a
     // parallel task's output can land in the window (the 2.4.1 release job
@@ -130,7 +130,7 @@ megaJar.configure {
     downgradeTo.set(JavaVersion.VERSION_1_8)
     shadePath.set { "me/vexmc/mental/tester/lib/jvmdg/" }
     destinationDirectory.set(layout.buildDirectory.dir("libs"))
-    archiveBaseName.set("MentalTester")
+    archiveBaseName.set("BattleMotionTester")
     archiveClassifier.set("")
     mustRunAfter(":api:apiCompat") // same global-capture caveat as downgradeJar above
     failOnJvmdgWarnings()

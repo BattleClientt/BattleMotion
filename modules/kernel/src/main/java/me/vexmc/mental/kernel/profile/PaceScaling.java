@@ -4,8 +4,7 @@ package me.vexmc.mental.kernel.profile;
  * Speed-conformal knockback ("pace scaling") — the per-profile knob family that
  * multiplies the HORIZONTAL knock Mental delivers by a factor derived from the
  * attacker's movement-speed attribute, so a Speed/Slowness fight keeps the
- * base-speed combo rhythm (design 2026-07-04, spec
- * {@code docs/superpowers/specs/2026-07-04-speed-conformal-knockback-design.md}).
+ * base-speed combo rhythm (design 2026-07-04, speed-conformal knockback spec).
  *
  * <p>A combo is a spacing equilibrium between three speeds: the victim's
  * knock-flight (absolute, does NOT scale with the Speed attribute — verified

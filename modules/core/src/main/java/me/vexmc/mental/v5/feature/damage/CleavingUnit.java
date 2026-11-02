@@ -37,6 +37,6 @@ public final class CleavingUnit implements FeatureUnit {
         // The registry write lives in the platform seam; the loud degrade line
         // routes to the server logger (this no-arg unit carries no injected
         // plugin logger). Idempotent — install() caches after the first boot.
-        CleavingRegistrar.install(message -> Bukkit.getLogger().warning("[Mental] " + message));
+        CleavingRegistrar.install(message -> Bukkit.getLogger().warning("[BattleMotion] " + message));
     }
 }

@@ -34,14 +34,14 @@ java {
 
 publishing {
     publications {
-        create<MavenPublication>("mentalApi") {
+        create<MavenPublication>("battleMotionApi") {
             from(components["java"])
-            groupId = "me.vexmc"
-            artifactId = "mental-api"
+            groupId = "dev.battleclient"
+            artifactId = "battlemotion-api"
             version = providers.gradleProperty("apiVersion").get()
             pom {
-                name.set("mental-api")
-                description.set("Mental's public combat-integration surface (API generation 3)")
+                name.set("battlemotion-api")
+                description.set("Battle Motion's public combat-integration surface (API generation 3)")
             }
         }
     }

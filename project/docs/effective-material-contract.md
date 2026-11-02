@@ -78,7 +78,7 @@ marker, and Mental presents the era-correct form on servers running its 1.8-comb
 # Legacy backport — accepted compatibility residuals (1.9.4–1.16.5)
 
 The 2026-07-02 backport extended Mental's runtime floor from Paper 1.17.1 down to
-1.9.4 (see `docs/superpowers/plans/2026-07-02-mental-legacy-backport.md`). Version
+1.9.4 (see the upstream legacy-backport notes). Version
 variance enters only at the platform seam via boot-time probing — no version
 conditionals scattered through the code, no silent degradation (every legacy
 absence is a loud boot line or a documented fallback). The following residuals

@@ -3,7 +3,7 @@
 #  Concurrent live-server integration matrix.
 #
 #  Boots EVERY version at the same time — each server on its own port, each
-#  with the Mental + MentalTester jars copied into its plugins/ dir (the
+#  with the BattleMotion + BattleMotionTester jars copied into its plugins/ dir (the
 #  legacy Paper builds do not parse -add-plugin=; copying is universal),
 #  reusing run-paper's downloaded Paper jars and the per-version run/
 #  directories. Each server runs on its per-entry JDK — the newest clean
@@ -102,8 +102,8 @@ jdk_for()  { jq -r --arg v "$1" '.entries[] | select(.version==$v and .platform=
 tier_for() { jq -r --arg v "$1" '.entries[] | select(.version==$v and .platform=="paper") | .bytecodeTier' "$MATRIX"; }
 java_for() { java_home_for "$(jdk_for "$1")"; }
 
-MENTAL_JAR=$(ls "$PWD"/core/build/libs/Mental-*.jar 2>/dev/null | sort -V | tail -1)
-TESTER_JAR=$(ls "$PWD"/tester/build/libs/MentalTester-*.jar 2>/dev/null | sort -V | tail -1)
+MENTAL_JAR=$(ls "$PWD"/core/build/libs/BattleMotion-*.jar 2>/dev/null | sort -V | tail -1)
+TESTER_JAR=$(ls "$PWD"/tester/build/libs/BattleMotionTester-*.jar 2>/dev/null | sort -V | tail -1)
 if [ -z "$MENTAL_JAR" ] || [ -z "$TESTER_JAR" ]; then
     echo "plugin jars missing — run ./gradlew build first" >&2
     exit 2
@@ -157,15 +157,15 @@ run_one() {
     fi
     java=$(java_for "$version")
     log="$dir/matrix-run.log"
-    result="$dir/plugins/MentalTester/test-results.txt"
+    result="$dir/plugins/BattleMotionTester/test-results.txt"
 
     mkdir -p "$dir/plugins"
     # Mirror the Gradle doFirst: pristine plugin config trees per run.
-    rm -rf "$dir/plugins/Mental"
-    rm -f "$result" "$dir/plugins/MentalTester/test-failures.txt"
+    rm -rf "$dir/plugins/BattleMotion"
+    rm -f "$result" "$dir/plugins/BattleMotionTester/test-failures.txt"
     echo "eula=true" > "$dir/eula.txt"
     if [ ! -f "$dir/server.properties" ]; then
-        printf 'level-type=flat\nonline-mode=false\nspawn-protection=0\nview-distance=4\nsimulation-distance=4\nmotd=Mental integration test\n' \
+        printf 'level-type=flat\nonline-mode=false\nspawn-protection=0\nview-distance=4\nsimulation-distance=4\nmotd=Battle Motion integration test\n' \
             > "$dir/server.properties"
     fi
 
@@ -173,9 +173,9 @@ run_one() {
     # NOT parse -add-plugin= (joptsimple reads it as clustered short options and
     # help-dumps + exits — spike-proven on 1.13.2 build 657), and copying is the
     # universal form that works across the whole range. Pristine-reset first: drop
-    # any Mental/tester jar a prior run (this script OR the Gradle RunServer,
+    # any BattleMotion/tester jar a prior run (this script OR the Gradle RunServer,
     # which shares run/<v>/) left in plugins/, so exactly this run's set loads.
-    rm -f "$dir/plugins/"Mental-*.jar "$dir/plugins/"MentalTester-*.jar
+    rm -f "$dir/plugins/"BattleMotion-*.jar "$dir/plugins/"BattleMotionTester-*.jar
     cp "$MENTAL_JAR" "$TESTER_JAR" "$dir/plugins/"
 
     # The declared Multi-Release bytecodeTier for this entry — passed to the tester
@@ -207,7 +207,7 @@ run_one() {
     # Live relay: boot marker + every test case transition, label-prefixed.
     tail -f "$log" 2>/dev/null | sed -l -n -E \
         -e "s/^.*Done \(([0-9.]+)s\)!.*$/[$label] server up (\1s)/p" \
-        -e "s/^.*\[MentalTester\] \[test\] (RUN|PASS|FAIL)(.*)$/[$label] \1\2/p" \
+        -e "s/^.*\[BattleMotionTester\] \[test\] (RUN|PASS|FAIL)(.*)$/[$label] \1\2/p" \
         >> "$LIVE" &
     local relay=$!
 
@@ -239,12 +239,12 @@ run_one() {
     # D-9 mirror of the Gradle log scan: Bukkit swallows listener-registration
     # failures and per-event handler throws into the console and keeps running,
     # so the tester's verdict cannot see them — a PASS with matches is downgraded
-    # to FAIL with the offending lines echoed. ("to Mental" deliberately also
-    # matches MentalTester — both jars are ours.) A linkage-error line counts
+    # to FAIL with the offending lines echoed. ("to BattleMotion" deliberately also
+    # matches BattleMotionTester — both jars are ours.) A linkage-error line counts
     # only when its following stack frames name me.vexmc.mental.
     if [ "$verdict" = "PASS" ]; then
         local scan
-        scan=$( { grep -E "has failed to register events for class me\.vexmc\.mental\.|Could not pass event .* to Mental" "$log"; \
+        scan=$( { grep -E "has failed to register events for class me\.vexmc\.mental\.|Could not pass event .* to BattleMotion" "$log"; \
                   awk '/java\.lang\.(NoSuchFieldError|NoSuchMethodError|NoClassDefFoundError)/ {err=$0; pend=1; next} \
                        pend && /^[[:space:]]*at / { if (index($0, "me.vexmc.mental") > 0) {print err; pend=0}; next } \
                        {pend=0}' "$log"; } 2>/dev/null )

@@ -405,7 +405,7 @@ public enum Feature {
 
     CT8C_REACH("ct8c-reach", Family.LOADOUT, "CT8c Reach",
             "Combat Test 8c melee reach — base 2.5 / sword 3.0 / hoe+trident 3.5 (+ the charged bonus), plus the 0.9 hitbox inflation and"
-                    + " through-non-solid targeting, all inside Mental's own reach validation. 1.20.5+ for 3.5; loud degrade below.",
+                    + " through-non-solid targeting, all inside Battle Motion's own reach validation. 1.20.5+ for 3.5; loud degrade below.",
             "TARGET", false,
             new Facets(
                     Facets.handled(),

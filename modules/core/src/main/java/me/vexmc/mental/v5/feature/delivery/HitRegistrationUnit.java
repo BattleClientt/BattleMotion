@@ -648,7 +648,7 @@ public final class HitRegistrationUnit implements FeatureUnit {
      * damage — enforcing the 1.6.0 boundary-hit design intent (an admitted boundary
      * hit applies full damage) that the netty pre-send has already committed to on
      * the victim's client (F1;
-     * {@code docs/superpowers/plans/2026-07-10-mental-255beta-feedback-coherence.md}).
+     * upstream feedback-coherence notes).
      *
      * <p>True iff ALL hold:</p>
      * <ul>
@@ -945,7 +945,7 @@ public final class HitRegistrationUnit implements FeatureUnit {
             // (composedAmount re-reads live attacker state; a second call could drift).
             double amount = composedAmount(attacker);
             // Boundary adoption (F1;
-            // docs/superpowers/plans/2026-07-10-mental-255beta-feedback-coherence.md).
+            // upstream feedback-coherence notes).
             // When this hit already committed a knock to the victim's client — the
             // wire burst rode (PRE_SENT) or the era vector was pinned to ship on the
             // genuine velocity event (PINNED) — and the LIVE victim would window-reject

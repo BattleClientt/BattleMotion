@@ -13,7 +13,7 @@
 #         toolchain  → the full paper fan-out (a build/matrix/workflow change
 #                      can break any entry, so every entry must prove itself).
 #     The Folia entry stays release-only on purpose: an extra real server per
-#     PR is too costly (see .claude/skills/matrix-gate).
+#     PR is too costly (see the integration matrix gate below).
 #   - A push to a branch that already has an open PR DEFERS to the
 #     pull_request run of the same commit (it tests the merge result, which
 #     is strictly more informative than the branch tip) — and a deferred run
@@ -23,7 +23,7 @@
 # `ci-ok` is the single fan-in gate branch protection requires: it fails iff
 # any needed job failed, and reads success when jobs were legitimately skipped
 # (a docs-only PR must stay mergeable). The nonce/per-entry-JDK model of the
-# integration gate itself is untouched — see .claude/skills/matrix-gate.
+# integration gate itself is untouched — see the integration matrix gate below.
 name: build
 
 on:
@@ -128,7 +128,7 @@ jobs:
           # deliberately fall through to code, never to docs); all-docs → skip.
           # assets/ (README + branding art) counts as docs: never a build input.
           toolchain_re='(^|/)[^/]*\.gradle\.kts$|^gradle/|^gradle\.properties$|^gradlew|^project/support-matrix\.json$|^project/scripts/|^\.github/workflows/'
-          docs_re='^(project/docs/|project/assets/|\.claude/|project/legacy-lab/|\.github/dependabot\.yml$|LICENSE$|\.gitignore$)|\.md$'
+          docs_re='^(project/docs/|project/assets/|project/legacy-lab/|\.github/dependabot\.yml$|LICENSE$|\.gitignore$)|\.md$'
 
           if printf '%s\n' "$changed" | grep -qE "$toolchain_re"; then
             klass=toolchain; versions=$all_lanes
@@ -180,8 +180,8 @@ jobs:
       - name: Upload jar
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: Mental
-          path: modules/core/build/libs/Mental-*.jar
+          name: BattleMotion
+          path: modules/core/build/libs/BattleMotion-*.jar
 
   integration:
     needs: [context, build]

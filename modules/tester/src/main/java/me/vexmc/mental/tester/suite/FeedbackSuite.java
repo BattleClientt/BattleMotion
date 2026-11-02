@@ -890,7 +890,7 @@ public final class FeedbackSuite {
      */
     private static void setEffectsPreset(TestContext context, String preset) throws Exception {
         context.syncRun(() -> {
-            MentalPluginV5 plugin = (MentalPluginV5) Bukkit.getPluginManager().getPlugin("Mental");
+            MentalPluginV5 plugin = (MentalPluginV5) Bukkit.getPluginManager().getPlugin("BattleMotion");
             plugin.overlaySet("effects.preset", preset);
             plugin.management().reload();
         });
@@ -901,7 +901,7 @@ public final class FeedbackSuite {
     private static void toggleModule(TestContext context, String id, boolean enabled) throws Exception {
         Feature feature = Feature.byModuleId(id)
                 .orElseThrow(() -> new AssertionError("unknown module id '" + id + "'"));
-        context.syncRun(() -> ((MentalPluginV5) Bukkit.getPluginManager().getPlugin("Mental"))
+        context.syncRun(() -> ((MentalPluginV5) Bukkit.getPluginManager().getPlugin("BattleMotion"))
                 .management().setModuleEnabled(feature, enabled));
         context.awaitTicks(1);
     }

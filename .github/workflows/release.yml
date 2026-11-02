@@ -55,8 +55,8 @@ jobs:
 
           # The changelog baseline: the nearest release tag in THIS commit's
           # ancestry. Version sort would be wrong here — the legacy StrikeSync
-          # v4.x tags live in the same history and sort above Mental's 2.x
-          # line, but they were not the previous release of anything.
+          # v4.x tags live in the same history and sort above the upstream Mental 2.x
+          # line (this fork's own line starts at 1.0.0-beta.1), but they were not the previous release of anything.
           previous_tag=$(git describe --tags --abbrev=0 --exclude="$tag" HEAD 2>/dev/null || true)
 
           # A hyphenated version (2.3.0-beta) publishes as a GitHub
@@ -190,10 +190,10 @@ jobs:
 
   # The Folia gate — release-only (ci: "release" in project/support-matrix.json). Boots
   # a real Folia server (fetched from the Folia project on the PaperMC API by the
-  # RunServer's Folia downloads service) with Mental + the tester, which
+  # RunServer's Folia downloads service) with Battle Motion + the tester, which
   # runtime-detects Folia and runs the boot suite + the Folia combat smoke (a
   # same-region fake pair driven on their owning region threads, journal-asserted
-  # — the first live combat coverage Mental has on Folia; Task 5.6). Release-only
+  # — the first live combat coverage Battle Motion has on Folia; Task 5.6). Release-only
   # on purpose: an extra real server per PR is too costly, and Folia's own runtime
   # (26.x) requires JDK 25.
   folia:
@@ -273,17 +273,17 @@ jobs:
       - name: Locate jar
         id: jar
         run: |
-          jar=$(ls modules/core/build/libs/Mental-*.jar | head -n1)
+          jar=$(ls modules/core/build/libs/BattleMotion-*.jar | head -n1)
           echo "path=$jar" >> "$GITHUB_OUTPUT"
           echo "name=$(basename "$jar")" >> "$GITHUB_OUTPUT"
 
-      # The public api artifact (me.vexmc:mental-api) rides along with every
+      # The public api artifact (dev.battleclient:battlemotion-api) rides along with every
       # release so integrators can grab the exact surface this build ships. The
       # release build already produced modules/api/build/libs/api-<pluginVersion>.jar;
       # withSourcesJar() also emits an api-<pluginVersion>-sources.jar, so filter
       # the -sources classifier out and fail LOUDLY unless exactly one binary jar
       # remains. Rename it to the api's OWN publication semver (apiVersion,
-      # independent of the plugin version) so the asset reads mental-api-3.0.0.jar.
+      # independent of the plugin version) so the asset reads battlemotion-api-3.2.0.jar.
       - name: Locate and name the api jar
         id: apijar
         run: |
@@ -300,7 +300,7 @@ jobs:
             exit 1
           fi
           api_version=$(grep -m1 -E '^apiVersion=' gradle.properties | sed -E 's/^apiVersion=//')
-          dest="mental-api-${api_version}.jar"
+          dest="battlemotion-api-${api_version}.jar"
           cp "${mains[0]}" "$dest"
           echo "Named ${mains[0]} → $dest"
           echo "path=$dest" >> "$GITHUB_OUTPUT"
@@ -350,7 +350,7 @@ jobs:
         with:
           tag_name: ${{ needs.detect.outputs.tag }}
           target_commitish: ${{ github.sha }}
-          name: Mental ${{ needs.detect.outputs.tag }}
+          name: Battle Motion ${{ needs.detect.outputs.tag }}
           body_path: release-notes.md
           files: |
             ${{ steps.jar.outputs.path }}

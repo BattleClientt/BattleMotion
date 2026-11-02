@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * The F1 boundary-adoption decision at the {@link HitRegistrationUnit} region-apply
- * seam (docs/superpowers/plans/2026-07-10-mental-255beta-feedback-coherence.md). When
+ * seam (upstream feedback-coherence notes). When
  * the netty fast path has ALREADY committed a knock to the victim's client (a PRE_SENT
  * wire burst or a PINNED velocity-event vector) and the LIVE victim would window-reject
  * the region hit in the ≤1-tick race sliver, the apply clamps the immunity to the

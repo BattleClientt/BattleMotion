@@ -51,8 +51,8 @@ import xyz.jpenilla.reflectionremapper.ReflectionRemapper;
  *       {@code net.minecraft.server.v1_16_R3.*} and the spigot names ARE the
  *       runtime names — the remapper is {@link ReflectionRemapper#noop()} and
  *       every class/field/method is resolved by its versioned name straight
- *       off the shape pack ({@code docs/superpowers/research/2026-07-02-legacy-
- *       fakeplayer-nms-shapes.md}). Selected by
+ *       off the shape pack (the legacy FakePlayer NMS
+ *       shapes research notes). Selected by
  *       {@link #detectLegacyPackage()}: a versioned CraftBukkit package whose
  *       matching versioned NMS {@code MinecraftServer} class actually loads
  *       (which excludes 1.17–1.20.4, versioned CB but Mojang-package NMS).</li>

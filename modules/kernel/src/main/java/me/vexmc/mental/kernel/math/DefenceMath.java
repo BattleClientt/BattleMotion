@@ -6,7 +6,7 @@ package me.vexmc.mental.kernel.math;
  * <p>Implements the pre-1.9 (flat) damage-reduction pipeline in the era order:
  * <strong>armour points → resistance → enchant EPF → absorption</strong>. Every
  * constant and formula is pinned from the decompiled 1.8.9 sources cited in
- * {@code docs/superpowers/plans/2026-06-14-ocm-ground-truth.md} §4
+ * the OCM ground-truth notes, §4
  * ({@code pr.java}, {@code acr.java}, {@code ack.java}).</p>
  *
  * <h2>What this deliberately does NOT do</h2>

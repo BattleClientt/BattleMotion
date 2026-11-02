@@ -191,8 +191,8 @@ read.
 ## The precision round (§3.2b)
 
 v1 solved over four inputs (`d0`, `residualCarry`, vertical stamp, attacker
-speed). The **precision round** (derivation
-`docs/superpowers/research/2026-07-04-pocket-servo-precision-derivation.md`)
+speed). The **precision round** (derivation in the upstream pocket-servo
+precision notes)
 upgraded the predictor behind that single seam — the `PocketServo.sigma` inversion
 never changed, only what feeds it:
 
