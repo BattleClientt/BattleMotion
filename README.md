@@ -1,6 +1,6 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="project/assets/hero-dark.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="project/assets/battlemotion-hero-dark.svg">
     <img src="project/assets/hero.svg" width="860" alt="Mental — classic combat, engineered">
   </picture>
 </p>
