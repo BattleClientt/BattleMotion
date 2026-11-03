@@ -53,6 +53,7 @@ import me.vexmc.mental.v5.gui.MenuManager;
 import me.vexmc.mental.v5.manage.Management;
 import me.vexmc.mental.v5.config.ConfigIssues;
 import me.vexmc.mental.v5.config.ConfigStore;
+import me.vexmc.mental.v5.config.LegacyDataMigration;
 import me.vexmc.mental.v5.config.Migrations;
 import me.vexmc.mental.v5.config.Overlay;
 import me.vexmc.mental.v5.config.RulesBundle;
@@ -160,8 +161,13 @@ public final class MentalPluginV5 extends JavaPlugin {
     /** Per-victim journal ring depth — the bounded "what did we ship" seam (spec §3.6). */
     static final int JOURNAL_CAPACITY = 16;
 
-    /** bStats plugin id (spec §13; kept from the retired plugin, config-gated on {@code metrics.enabled}). */
-    private static final int BSTATS_PLUGIN_ID = 31788;
+    /**
+     * bStats plugin id. Battle Motion has NOT registered its own bStats plugin yet,
+     * and upstream Mental's id (31788) belongs to its author, so it must never be
+     * reused here: while this is {@code 0} nothing is ever sent. Set it to Battle
+     * Motion's own id once one is registered on bstats.org.
+     */
+    private static final int BSTATS_PLUGIN_ID = 0;
 
     private Metrics metrics;
 
@@ -266,6 +272,9 @@ public final class MentalPluginV5 extends JavaPlugin {
         // (Phase 3 outcome): the bundle stamps config-version: 2, so migrate()
         // sees a v2 tree and carries it to v3 on first boot.
         Path dataDir = getDataFolder().toPath();
+        // Battle Motion's folder is plugins/BattleMotion/; a server coming from upstream
+        // Mental gets its plugins/Mental/ files COPIED over once (the old folder stays).
+        LegacyDataMigration.run(dataDir, message -> getLogger().info(message));
         this.configStore = new ConfigStore(dataDir, this::getResource, message -> getLogger().info(message));
         configStore.ensureDefaultFiles();
         Migrations.Result migration =
@@ -454,18 +463,18 @@ public final class MentalPluginV5 extends JavaPlugin {
         this.menuManager = new MenuManager(new MenuContext(this, management, chatPrompt));
         getServer().getPluginManager().registerEvents(menuManager, this);
         getServer().getPluginManager().registerEvents(chatPrompt, this);
-        PluginCommand command = getCommand("mental");
+        PluginCommand command = getCommand("battlemotion");
         if (command != null) {
             command.setExecutor(new MentalCommand(this, menuManager));
         } else {
-            getLogger().warning("plugin.yml is missing the 'mental' command — the menu and reload are unavailable.");
+            getLogger().warning("plugin.yml is missing the 'battlemotion' command — the menu and reload are unavailable.");
         }
 
         // bStats (spec §13; owner decision: KEEP). Config-gated on metrics.enabled
         // (default true) — warn-and-fallback: absent section reads true. The
         // charts read the v5 sources live through suppliers, so a reload's changed
         // anticheat/probe posture is reflected on the next report.
-        if (snapshot.metricsEnabled()) {
+        if (snapshot.metricsEnabled() && BSTATS_PLUGIN_ID > 0) {
             this.metrics = new Metrics(this, BSTATS_PLUGIN_ID);
             metrics.addCustomChart(new SimplePie("anticheat_mode",
                     () -> snapshot().anticheat().mode().name().toLowerCase(Locale.ROOT)));
@@ -474,10 +483,10 @@ public final class MentalPluginV5 extends JavaPlugin {
             metrics.addCustomChart(new SimplePie("scheduling_backend",
                     () -> scheduling.describe()));
         } else {
-            getLogger().info("bStats metrics disabled (metrics.enabled=false).");
+            getLogger().info("bStats metrics disabled (no Battle Motion bStats id registered, or metrics.enabled=false).");
         }
 
-        getLogger().info(() -> "Mental v5 enabled — server " + environment.describe()
+        getLogger().info(() -> "Battle Motion enabled (Mental v5 core) — server " + environment.describe()
                 + ", scheduling=" + scheduling.describe() + ", ping=" + Pings.describe()
                 + ", " + capabilities.describe());
         // The cross-version rule-feature resolvers (absorption/potion-effect/item-cooldown/crit-posture):
@@ -563,7 +572,7 @@ public final class MentalPluginV5 extends JavaPlugin {
                 PacketEvents.getAPI().terminate();
             }
         });
-        getLogger().info("Mental v5 disabled.");
+        getLogger().info("Battle Motion disabled.");
     }
 
     /**

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Pins the 1.8 armour defence pipeline (armour points → resistance → enchant
  * EPF → absorption) from the decompiled 1.8.9 sources cited in
- * {@code docs/superpowers/plans/2026-06-14-ocm-ground-truth.md} §4.
+ * the OCM ground-truth notes, §4.
  *
  * <p>Every constant and stage here is a unit pin: drift breaks the build. The
  * EPF stage is the deterministic variant (no random multiplier) — see the

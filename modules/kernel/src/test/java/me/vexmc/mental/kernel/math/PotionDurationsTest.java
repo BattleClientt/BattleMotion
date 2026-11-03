@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  * <p>Every expectation here is OCM's {@code old-potion-effects.potion-durations}
  * config table (seconds) converted to ticks (×20). OCM's table is the de-facto
  * reference for the pre-1.9 durations; see
- * {@code docs/superpowers/plans/2026-06-14-ocm-ground-truth.md §5} which flags
+ * the OCM ground-truth notes (§5) which flags
  * the table as the agreed reference (not independently decompile-verified). The
  * source rows live in
  * {@code BukkitOldCombatMechanics/src/main/resources/config.yml} under

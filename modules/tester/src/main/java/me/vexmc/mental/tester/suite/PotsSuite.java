@@ -541,7 +541,7 @@ public final class PotsSuite {
 
     /** Toggles a module through the real management seam and waits for convergence. */
     private static void setModule(TestContext context, Feature feature, boolean enabled) throws Exception {
-        context.syncRun(() -> ((MentalPluginV5) Bukkit.getPluginManager().getPlugin("Mental"))
+        context.syncRun(() -> ((MentalPluginV5) Bukkit.getPluginManager().getPlugin("BattleMotion"))
                 .management().setModuleEnabled(feature, enabled));
         context.awaitTicks(1);
     }

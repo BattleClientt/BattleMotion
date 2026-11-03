@@ -1,7 +1,7 @@
 # Third-party software
 
-Mental is MIT-licensed (see [`LICENSE`](LICENSE)). The distributed
-`Mental-<version>.jar` bundles the following third-party components,
+Battle Motion (a fork of Mental by Owen Gregson) is MIT-licensed (see [`LICENSE`](../LICENSE)). The distributed
+`BattleMotion-<version>.jar` bundles the following third-party components,
 shaded and relocated under `me.vexmc.mental.lib.*`. Each remains under
 its own license; this file records the attribution and license terms.
 

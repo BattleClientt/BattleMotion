@@ -9,8 +9,7 @@ import me.vexmc.mental.kernel.model.TickStamp;
 import me.vexmc.mental.kernel.port.TickClock;
 
 /**
- * The per-attacker input ledger (2.6.0, spec
- * {@code docs/superpowers/specs/2026-07-11-input-ledger-design.md}): the
+ * The per-attacker input ledger (2.6.0, input-ledger spec): the
  * arrival-order sprint truth that was {@code SprintWire}, grown into the one
  * observable authority on sprint resets. The era server applied inbound packets
  * in arrival order, so an attack always read the sprint flag with every earlier

@@ -110,10 +110,10 @@ tasks.processResources {
 
 tasks.shadowJar {
     dependsOn(":compat-folia:classes")
-    archiveBaseName.set("Mental")
+    archiveBaseName.set("BattleMotion")
     // The shaded modern (v61) jar is now an INTERMEDIATE of the mega-jar pipeline, not
     // the shipped artifact. Stage it out of build/libs (and off the canonical name) so
-    // the Mental-*.jar glob that release.yml and integration-matrix.sh read only ever
+    // the BattleMotion-*.jar glob that release.yml and integration-matrix.sh read only ever
     // resolves the final mega jar (campaign H3). Its bytecode is byte-identical to the
     // 2.3.x line — it becomes the mega jar's META-INF/versions/17 tree unchanged (D-1).
     archiveClassifier.set("modern")
@@ -143,8 +143,8 @@ tasks.shadowJar {
  *  already ≤ v52 (packetevents/bstats/adventure targets) get no MR duplicate.
  *
  *  jvmdg's ShadeJar then relocates jvmdg's own runtime helpers under
- *  me/vexmc/mental/lib/jvmdg/ and emits the canonical Mental-<version>.jar — the
- *  ONLY Mental-*.jar in build/libs. Every consumer (build, the run tasks, the
+ *  me/vexmc/mental/lib/jvmdg/ and emits the canonical BattleMotion-<version>.jar — the
+ *  ONLY BattleMotion-*.jar in build/libs. Every consumer (build, the run tasks, the
  *  verify gates) reads THIS task's output, never the staged intermediates.
  * ──────────────────────────────────────────────────────────────────────── */
 
@@ -216,7 +216,7 @@ downgradeMegaJar.configure {
     classpath = sourceSets["main"].compileClasspath +
             project(":compat-folia").sourceSets["main"].compileClasspath
     destinationDirectory.set(layout.buildDirectory.dir("jvmdg-stage"))
-    archiveBaseName.set("Mental")
+    archiveBaseName.set("BattleMotion")
     archiveClassifier.set("downgraded")
     // The warning capture listens on Gradle's GLOBAL console stream (a task
     // LoggingManager listener is not task-scoped), so a parallel task's output
@@ -229,7 +229,7 @@ downgradeMegaJar.configure {
 }
 
 // The ShadeJar the plugin pre-registers — relocates jvmdg's runtime helpers under our
-// lib prefix and emits the canonical, glob-visible Mental-<version>.jar.
+// lib prefix and emits the canonical, glob-visible BattleMotion-<version>.jar.
 val megaJar = jvmdg.defaultShadeTask
 megaJar.configure {
     inputFile.set(downgradeMegaJar.flatMap { it.archiveFile })
@@ -239,7 +239,7 @@ megaJar.configure {
     // under this one prefix, i.e. me/vexmc/mental/lib/jvmdg/xyz/wagyourtail/…).
     shadePath.set { "me/vexmc/mental/lib/jvmdg/" }
     destinationDirectory.set(layout.buildDirectory.dir("libs"))
-    archiveBaseName.set("Mental")
+    archiveBaseName.set("BattleMotion")
     archiveClassifier.set("")
     mustRunAfter(":api:apiCompat") // same global-capture caveat as downgradeJar above
     failOnJvmdgWarnings(this)
@@ -437,8 +437,8 @@ val verifyJdk8Api = tasks.register("verifyJdk8Api") {
         // Mental packages are server-provided FROM ITS PERSPECTIVE — ignore me/vexmc/mental/ for it only.
         // Inlined as a loop (a local fun here would truncate the Gradle Kotlin DSL script body).
         val gates = listOf(
-            Triple(coreJar.get().asFile, serverProvidedIgnores, "Mental"),
-            Triple(testerJar.get().asFile, serverProvidedIgnores + "me/vexmc/mental/", "MentalTester"))
+            Triple(coreJar.get().asFile, serverProvidedIgnores, "BattleMotion"),
+            Triple(testerJar.get().asFile, serverProvidedIgnores + "me/vexmc/mental/", "BattleMotionTester"))
         for ((jar, ignores, label) in gates) {
             val gateArgs = mutableListOf(jar.absolutePath, jdk8.absolutePath,
                 "--allow", allowFile.asFile.absolutePath)
@@ -673,8 +673,8 @@ fun registerIntegrationServer(
     bytecodeTier: Int = 61,
 ): Pair<TaskProvider<RunServer>, TaskProvider<Task>> {
     val runDir = rootProject.layout.projectDirectory.dir("run/$runDirName").asFile
-    val resultFile = runDir.resolve("plugins/MentalTester/test-results.txt")
-    val failuresFile = runDir.resolve("plugins/MentalTester/test-failures.txt")
+    val resultFile = runDir.resolve("plugins/BattleMotionTester/test-results.txt")
+    val failuresFile = runDir.resolve("plugins/BattleMotionTester/test-failures.txt")
     val logFile = layout.buildDirectory.file("integration-test-logs/${runDirName.replace('/', '-')}.log")
     val label = version + flavour
 
@@ -725,17 +725,17 @@ fun registerIntegrationServer(
             failuresFile.delete()
             // The whole config tree resets per run — split files, profiles,
             // migration artifacts — so every suite starts from the defaults.
-            runDir.resolve("plugins/Mental").deleteRecursively()
+            runDir.resolve("plugins/BattleMotion").deleteRecursively()
             // Stale versioned plugin JARs must go too. scripts/integration-matrix.sh copies
             // this run's jars verbatim into the SHARED run/<v>/plugins dir; run-paper's own
             // deleteOldPlugins only prunes its "_RunServer_plugin.jar"-suffixed copies, so a
-            // script-left Mental-*.jar / MentalTester-*.jar — from a prior
+            // script-left BattleMotion-*.jar / BattleMotionTester-*.jar — from a prior
             // version — would double-load as an ambiguous plugin. run-paper's
             // setupPlugins re-copies THIS run's pluginJars in exec(), after
             // this doFirst, so clearing both patterns unconditionally is the correct reset.
             runDir.resolve("plugins").listFiles()?.forEach { jar ->
                 val n = jar.name
-                if (n.endsWith(".jar") && (n.startsWith("Mental-") || n.startsWith("MentalTester-"))) jar.delete()
+                if (n.endsWith(".jar") && (n.startsWith("BattleMotion-") || n.startsWith("BattleMotionTester-"))) jar.delete()
             }
             // Belt-and-suspenders EULA acceptance: modern Paper honours the
             // -Dcom.mojang.eula.agree property, but the legacy builds are more
@@ -755,7 +755,7 @@ fun registerIntegrationServer(
                     spawn-protection=0
                     view-distance=4
                     simulation-distance=4
-                    motd=Mental integration test
+                    motd=Battle Motion integration test
                     """.trimIndent() + "\n"
                 )
             }
@@ -804,7 +804,7 @@ fun registerIntegrationServer(
             // A linkage-error line counts only when its following stack frames name
             // me.vexmc.mental (a relocated-lib frame is ours too).
             val swallowed = Regex(
-                """has failed to register events for class me\.vexmc\.mental\.|Could not pass event .* to Mental""")
+                """has failed to register events for class me\.vexmc\.mental\.|Could not pass event .* to BattleMotion""")
             val linkage = Regex("""java\.lang\.(NoSuchFieldError|NoSuchMethodError|NoClassDefFoundError)""")
             val scanHits = mutableListOf<String>()
             var pendingLinkage: String? = null

@@ -153,7 +153,7 @@ public final class SettingsCatalog {
                                         + " victim's hurt window. Tune it in hit-registration.yml.")),
                 List.of(
                         Knob.toggle("hit-registration.reach-validation.enabled", "Reach Validation", "IRON_BARS",
-                                "Mental's own ping-rewound reach check — for servers running no anticheat.",
+                                "Battle Motion's own ping-rewound reach check — for servers running no anticheat.",
                                 s -> settings(s, Feature.HIT_REGISTRATION, HitRegSettings.class)
                                         .reachValidation().enabled()),
                         Knob.stepDouble("hit-registration.reach-validation.max-reach", "Max Reach", "TARGET",
@@ -181,7 +181,7 @@ public final class SettingsCatalog {
         pages.put(Feature.LATENCY_COMPENSATION, new Page(Feature.LATENCY_COMPENSATION, List.of(
                 List.of(
                         Knob.cycle("latency-compensation.probe-strategy", "Probe Strategy", "COMPASS",
-                                "How Mental measures each player's live ping mid-fight. Below 1.17 PING"
+                                "How Battle Motion measures each player's live ping mid-fight. Below 1.17 PING"
                                         + " rides transactions automatically.",
                                 List.of("PING", "TRANSACTION", "KEEPALIVE"),
                                 s -> settings(s, Feature.LATENCY_COMPENSATION, CompensationSettings.class)

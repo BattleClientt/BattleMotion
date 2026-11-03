@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public enum PresetKind {
     KNOCKBACK("Knockback Presets", "BOOKSHELF",
-            "Every knockback feel — the era's archived servers, Mental's own,"
+            "Every knockback feel — the era's archived servers, Battle Motion's own,"
             + " and yours — previewed and applied live."),
     EFFECTS("Effects Presets", "JUKEBOX",
             "Whole combat-effects tunes — hits, indicators and deaths"

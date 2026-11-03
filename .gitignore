@@ -50,12 +50,12 @@ replay_pid*.log
 *.swp
 *.swo
 
-# Claude Code — session artifacts stay local; skills are project config
-.claude/*
-!.claude/skills/
-
-# Superpowers — local SDD session artifacts (briefs/reports/diffs), never tracked
+# Local agent tooling — stays on the developer's disk, never tracked
+.claude/
+CLAUDE.md
 .superpowers/
+project/docs/superpowers/
+project/docs/design/2026-07-18-readme-redesign-brief.md
 
 # legacy-lab: measurement harness is tracked; servers, worlds, decompiles are not
 project/legacy-lab/*

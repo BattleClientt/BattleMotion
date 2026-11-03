@@ -44,7 +44,7 @@ public final class CompatibilityMenu extends Menu {
 
     @Override
     protected @NotNull Component title() {
-        return Component.text("Mental", Brand.PRIMARY, TextDecoration.BOLD)
+        return Component.text("Battle Motion", Brand.PRIMARY, TextDecoration.BOLD)
                 .append(Component.text(" · ", Brand.MUTED))
                 .append(Component.text("Compatibility", Palette.system().accent()));
     }
@@ -83,8 +83,8 @@ public final class CompatibilityMenu extends Menu {
 
     private @NotNull ItemStack headerCard(@NotNull AnticheatMode mode) {
         Icon icon = Buttons.title("IRON_BARS", "Anticheat Coexistence", Brand.TEXT);
-        Buttons.wrap("Mental's pre-send fast path predicts what an anticheat may dislike. Pick how"
-                + " hard Mental yields when one is present.").forEach(line -> icon.lore(line, Brand.MUTED));
+        Buttons.wrap("Battle Motion's pre-send fast path predicts what an anticheat may dislike. Pick how"
+                + " hard Battle Motion yields when one is present.").forEach(line -> icon.lore(line, Brand.MUTED));
         icon.blank();
         icon.lore(Buttons.kv("Mode", mode.name().toLowerCase(Locale.ROOT), Brand.TEXT));
         return icon.build();

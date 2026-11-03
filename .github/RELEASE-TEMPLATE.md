@@ -1,8 +1,8 @@
 <!--
-  Mental release-notes template — read and auto-filled by
+  Battle Motion release-notes template — read and auto-filled by
   .github/workflows/release.yml on every release. The workflow substitutes three
   per-release tokens and ships everything else below VERBATIM:
-    {{VERSION}}     the release tag (e.g. v2.9.0-beta)
+    {{VERSION}}     the release tag (e.g. v1.0.0-beta.1)
     {{HIGHLIGHTS}}  the player-facing bullets from .github/release-highlights.md
     {{CHANGELOG}}   every commit since the previous release
   Edit the fixed styling below freely; just keep the three tokens and the absolute
@@ -12,8 +12,8 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/owengregson/Mental/main/project/assets/release/banner-dark.svg">
-    <img src="https://raw.githubusercontent.com/owengregson/Mental/main/project/assets/release/banner.svg" width="860" alt="Mental {{VERSION}}">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/BattleClientt/battlemotion/main/project/assets/release/banner-dark.svg">
+    <img src="https://raw.githubusercontent.com/BattleClientt/battlemotion/main/project/assets/release/banner.svg" width="860" alt="Battle Motion {{VERSION}}">
   </picture>
 </p>
 
@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/owengregson/Mental/main/project/assets/release/headers/changes.svg" height="42" alt="Changes">
+  <img src="https://raw.githubusercontent.com/BattleClientt/battlemotion/main/project/assets/release/headers/changes.svg" height="42" alt="Changes">
 </p>
 
 {{HIGHLIGHTS}}
@@ -39,7 +39,7 @@
 </details>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/owengregson/Mental/main/project/assets/divider.svg" height="22" alt="">
+  <img src="https://raw.githubusercontent.com/BattleClientt/battlemotion/main/project/assets/divider.svg" height="22" alt="">
 </p>
 
-<p align="center"><sub><b>MENTAL</b> by <a href="https://github.com/owengregson">@owengregson</a></sub></p>
+<p align="center"><sub><b>Battle Motion</b> by <a href="https://github.com/BattleClientt">Battle Client</a> · fork of <a href="https://github.com/owengregson/Mental">Mental</a> by Owen Gregson (MIT)</sub></p>

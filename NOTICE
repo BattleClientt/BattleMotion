@@ -1,0 +1,14 @@
+Battle Motion
+Copyright (c) 2026 Battle Client
+
+Battle Motion is a fork of Mental (https://github.com/owengregson/Mental),
+Copyright (c) 2024 Owen Gregson, distributed under the MIT License.
+The original copyright and license notice are preserved in LICENSE.
+
+Fork base: Mental 2.12.0-beta (commit 8c6cc73). Java package names
+(me.vexmc.mental...) and relocation prefixes are intentionally unchanged
+from upstream.
+
+Third-party components bundled in the distributed jar (PacketEvents, Adventure,
+bStats, jvmdg and others) keep their own licenses; see
+project/THIRD-PARTY-NOTICES.md.

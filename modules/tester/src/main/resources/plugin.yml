@@ -1,8 +1,8 @@
-name: MentalTester
+name: BattleMotionTester
 version: '${version}'
 main: me.vexmc.mental.tester.MentalTesterPlugin
 api-version: '${apiVersion}'
 folia-supported: true
-description: In-server integration test driver for Mental.
-authors: [owengregson]
-depend: [Mental]
+description: In-server integration test driver for Battle Motion.
+authors: [BattleClient, owengregson]
+depend: [BattleMotion]

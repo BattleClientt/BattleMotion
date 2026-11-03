@@ -16,7 +16,7 @@ import me.vexmc.mental.kernel.profile.KnockbackProfile;
 public enum MeleeFormula {
 
     LEGACY("Legacy (1.7 / 1.8)", "STONE_SWORD",
-            "The 1.7/1.8 knockback math — the fork presets and Mental's own tunings.", false),
+            "The 1.7/1.8 knockback math — the fork presets and Battle Motion's own tunings.", false),
     MODERN("Modern (26.1.2)", "NETHERITE_SWORD",
             "The byte-exact Paper 26.1.2 melee formula — the modern server feel.", true);
 

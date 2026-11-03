@@ -138,7 +138,6 @@ never reads.
 **The actual fix (2.1.3):** a `KnockbackEventMirror` that, on 1.20.6+, mirrors the
 value the velocity event will ship onto the `EntityKnockbackEvent` delta — so any
 observer of the standard knockback event (anticheats, SimpleBoxer, other plugins)
-sees Mental's value, with the final wire velocity unchanged. Spec:
-`docs/superpowers/specs/2026-06-30-knockback-event-mirror-design.md`. The 2.1.1 /
+sees Mental's value, with the final wire velocity unchanged. Spec: the upstream knockback-event-mirror design. The 2.1.1 /
 2.1.2 fixes were chasing a ghost but remain valid hardening (region-safety, pending
 lifecycle, the boundary exclusion) and are kept.

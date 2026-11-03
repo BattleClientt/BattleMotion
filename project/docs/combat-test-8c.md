@@ -6,7 +6,7 @@ supported range. Every number below was ground-truthed against the decompiled
 8c client (SHA1 `177472ace3ff5d98fbd63b4bcd5bbef5b035a018`, Mojang-mapped),
 cross-checked against jeb_'s changelogs and his damage spreadsheet; where
 sources disagreed, the shipped binary won. The full verified list with
-provenance lives in `docs/superpowers/specs/2026-07-18-combat-test-8c-design.md`.
+provenance is kept in the upstream Combat Test 8c design notes.
 
 ## Turning it on
 

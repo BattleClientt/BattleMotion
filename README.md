@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="project/assets/battlemotion-hero-dark.png">
-    <img src="project/assets/hero.svg" width="860" alt="Mental — classic combat, engineered">
+    <img src="project/assets/hero.svg" width="860" alt="Battle Motion — classic combat, engineered">
   </picture>
 </p>
 
@@ -20,15 +20,6 @@
 <br>
 
 <p align="center">
-  <a href="https://bstats.org/plugin/bukkit/Mental/31788"><picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/owengregson/Mental/bstats-charts/assets/stats/players-dark.svg">
-    <img src="https://raw.githubusercontent.com/owengregson/Mental/bstats-charts/assets/stats/players.svg" width="820" alt="Players on servers running Mental — last 14 days">
-  </picture></a>
-</p>
-
-<br>
-
-<p align="center">
   <img src="project/assets/headers/features.svg" height="54" alt="Features">
 </p>
 
@@ -38,7 +29,7 @@
 <img src="project/assets/icons/knockback.svg" width="40" alt=""><br>
 <b>Precision-tuned Knockback</b><br>
 Choose the legacy 1.7.10 formula or the modern one, with presets for both.
-<code>signature</code>, Mental's own, feels close to <code>mmc</code> knockback and suits
+<code>signature</code>, Battle Motion's own, feels close to <code>mmc</code> knockback and suits
 practice servers well.
 </td>
 <td width="50%" valign="top">
@@ -84,16 +75,16 @@ presets live, without a restart. Everything is still plain, documented YAML.
   <img src="project/assets/headers/getting-started.svg" height="54" alt="Getting started">
 </p>
 
-1. **Download** `Mental-<version>.jar` from [the latest release](../../releases/latest).
+1. **Download** `BattleMotion-<version>.jar` from [the latest release](../../releases/latest).
 2. **Drop it** into your server's `plugins/` folder.
 3. **Restart.** That's it. The defaults are the classic combat, so there is nothing to set up.
 
-Configuration is generated under `plugins/Mental/` on first boot, and every option is
+Configuration is generated under `plugins/BattleMotion/` on first boot, and every option is
 documented inside its own file. Upgrading from an old single-file config? It migrates
 automatically: your tuned values become `profiles/custom.yml` (and stay selected), and the
 original is kept as `config-v1-backup.yml`.
 
-> **No dependencies.** Mental needs nothing else installed; PlaceholderAPI is supported,
+> **No dependencies.** Battle Motion needs nothing else installed; PlaceholderAPI is supported,
 > but optional.
 
 <br>
@@ -102,7 +93,7 @@ original is kept as `config-v1-backup.yml`.
   <img src="project/assets/headers/modern-legacy.svg" height="54" alt="Modern or legacy knockback">
 </p>
 
-Mental ships two complete knockback calculations. Pick the one your server should feel like:
+Battle Motion ships two complete knockback calculations. Pick the one your server should feel like:
 
 - **Legacy** is the true 1.7.10 formula: sprint resets, residual stacking, era verticals.
   It comes with a full preset library in `profiles/legacy/`, and every knob is tunable.
@@ -123,7 +114,7 @@ The knockback profile is one server-wide setting; pick it in-game or in `knockba
 
 | Preset | The feel |
 |---|---|
-| `signature` | Mental's own tuning, and the recommended default for competitive 1.8-style PvP. |
+| `signature` | Battle Motion's own tuning, and the recommended default for competitive 1.8-style PvP. |
 | `lunar` | The archived Lunar Network values: a lighter, floatier trade. |
 | `badlion` | The classic Badlion feel, with firm horizontals and honest verticals. |
 | `velt` | A modern practice-server tuning, snappy and consistent. |
@@ -144,7 +135,7 @@ to what each knob does lives in [project/docs/knockback-profiles.md](project/doc
 for the next entity-tracker pulse. That is 10 to 50 ms of server-side dead time before the
 victim feels anything, on top of ping.
 
-Mental removes both waits:
+Battle Motion removes both waits:
 
 - Attacks are read the moment they arrive: intercepted on the netty thread and validated
   against per-tick snapshots, so the attack never waits on the main thread.
@@ -167,7 +158,7 @@ The full pipeline, edge cases included, is written up in
   <img src="project/assets/headers/ingame.svg" height="54" alt="In-game management">
 </p>
 
-`/mental` (or `/mtl`) opens the management suite, restricted to operators by default. Each
+`/battlemotion` (aliases `/mental` and `/mtl`) opens the management suite, restricted to operators by default. Each
 feature family gets its own colour-coded screen, on chrome that renders in full colour right
 down to 1.9.4:
 
@@ -180,8 +171,8 @@ down to 1.9.4:
 - The **Preset Gallery** is where you browse and apply knockback profiles (legacy and modern
   tabs) and combat-effects tunes, each with a live preview.
 - **Combat Presets** applies a whole ruleset at once: the Combat Test 8c snapshot, the
-  classic 1.7 feel, or Mental-transparent vanilla.
-- Nothing needs a restart. Changes apply immediately, and `/mental reload` re-reads the
+  classic 1.7 feel, or Battle Motion-transparent vanilla.
+- Nothing needs a restart. Changes apply immediately, and `/battlemotion reload` re-reads the
   files from console.
 
 Your hand-edited YAML is never rewritten: in-game changes are stored as a separate overlay,
@@ -193,7 +184,7 @@ so comments and formatting in the files you maintain stay exactly as you left th
   <img src="project/assets/headers/configuration.svg" height="54" alt="Configuration">
 </p>
 
-Everything lives under `plugins/Mental/`, split by topic, and each file documents every key
+Everything lives under `plugins/BattleMotion/`, split by topic, and each file documents every key
 it holds:
 
 | File | What it controls |
@@ -216,7 +207,7 @@ it holds:
   <img src="project/assets/headers/ruleset.svg" height="54" alt="The 1.8 ruleset">
 </p>
 
-Mental always owns hit delivery and knockback. Everything below is opt-in, off by default,
+Battle Motion always owns hit delivery and knockback. Everything below is opt-in, off by default,
 and grouped by family, with each rule a one-line toggle:
 
 | Family | What turning it on does |
@@ -246,7 +237,7 @@ and grouped by family, with each rule a one-line toggle:
 
 **Does it work with anticheats?**
 Yes. Combat is server-authoritative, so movement-prediction anticheats verify it cleanly.
-When one is detected, Mental stands down its packet-level fast path automatically and stays
+When one is detected, Battle Motion stands down its packet-level fast path automatically and stays
 correct.
 
 **Do my players need a mod or a specific client?**
@@ -254,19 +245,19 @@ No. Everything is server-side; vanilla clients, Lunar, Badlion, and 1.7-animatio
 just work.
 
 **Can I keep modern 1.9+ combat and only fix knockback?**
-Yes, that's the default install. The 1.8 ruleset is entirely opt-in; out of the box, Mental
+Yes, that's the default install. The 1.8 ruleset is entirely opt-in; out of the box, Battle Motion
 changes knockback, hit registration, and latency fairness only.
 
 **Does it replace OldCombatMechanics?**
-It can. The optional ruleset covers the OCM rule set. Pick one plugin per rule and Mental
+It can. The optional ruleset covers the OCM rule set. Pick one plugin per rule and Battle Motion
 handles the rest natively, including the parts OCM can't touch (delivery and knockback).
 
 **Folia?**
 Supported. Every release is gated on a real Folia server before it ships.
 
 **Something feels off. How do I debug it?**
-`/mental debug subscribe` streams what Mental sees (hits, knocks, sprint reads) to your chat
-in real time. You can also open the **Debug** screen in `/mental` and hit *Stream to my chat*.
+`/battlemotion debug subscribe` streams what Battle Motion sees (hits, knocks, sprint reads) to your chat
+in real time. You can also open the **Debug** screen in `/battlemotion` and hit *Stream to my chat*.
 
 <br>
 
@@ -281,7 +272,7 @@ in real time. You can also open the **Debug** screen in `/mental` and hit *Strea
 | **Dependencies** | None (PlaceholderAPI optional) |
 | **Tested** | Every supported Paper version + Folia boots live in the release gate, every release |
 
-One jar covers the whole range: modern JVMs load Mental's Java-17 code, and older JVMs load
+One jar covers the whole range: modern JVMs load Battle Motion's Java-17 code, and older JVMs load
 a byte-equivalent Java-8 build packed into the same file. On 1.9.4 to 1.10.2 a handful of
 trajectory self-tests are skipped, because servers of that era don't simulate offline
 players' motion; gameplay is unaffected.
@@ -295,10 +286,10 @@ players' motion; gameplay is unaffected.
 Modules: `api` (public surface) · `kernel` (pure-JDK combat model) · `platform` (Bukkit seam)
 · `core` (the plugin) · `compat-folia` · `tester` (live-server harness).
 
-The **public API**, `me.vexmc:mental-api` (generation 3), covers combo lifecycle events, an
+The **public API**, `dev.battleclient:battlemotion-api` (generation 3), covers combo lifecycle events, an
 authoritative combat-state query service, capability discovery, knockback outcome control,
 and temporary per-(victim, attacker) hit-timing overrides, which let a companion plugin
-re-price a victim's hurt window for one attacker inside Mental's own timing (see
+re-price a victim's hurt window for one attacker inside Battle Motion's own timing (see
 [project/docs/api-timing-overrides.md](project/docs/api-timing-overrides.md)). The jar ships
 with every release; the contract lives in
 [project/docs/api-gen3-integration-surface.md](project/docs/api-gen3-integration-surface.md)
@@ -313,8 +304,18 @@ Deep dives: [fast path](project/docs/fast-path.md) · [knockback profiles](proje
 · [combo hold](project/docs/combo-hold.md) · [legacy tier](project/docs/legacy-combat.md) · the combat
 research ledger in [project/docs/research/](project/docs/research/).
 
+## Credits
+
+Battle Motion is a fork of **[Mental](https://github.com/owengregson/Mental)** by
+**Owen Gregson** (MIT), adapted for the Battle Client ecosystem. The combat model,
+knockback engine and hit-registration work are Owen's; his copyright and license are
+kept in [`LICENSE`](LICENSE). Third-party components are listed in
+[`project/THIRD-PARTY-NOTICES.md`](project/THIRD-PARTY-NOTICES.md) and the fork notice in
+[`NOTICE`](NOTICE). Plugin package names (`me.vexmc.mental…`) are kept as upstream's so
+upstream fixes stay easy to merge.
+
 Licensed [MIT](LICENSE) · third-party notices [here](project/THIRD-PARTY-NOTICES.md) · anonymous
-usage metrics via bStats (opt out in `config.yml`).
+no usage metrics are sent (the bStats hook is disabled until Battle Motion registers its own id).
 
 <br>
 
@@ -322,4 +323,4 @@ usage metrics via bStats (opt out in `config.yml`).
   <img src="project/assets/divider.svg" height="22" alt="">
 </p>
 
-<p align="center"><sub><b>BattleMotion</b> by <a href="https://github.com/owengregson">@owengregson</a></sub></p>
+<p align="center"><sub><b>Battle Motion</b> by <a href="https://github.com/BattleClientt">Battle Client</a></sub></p>

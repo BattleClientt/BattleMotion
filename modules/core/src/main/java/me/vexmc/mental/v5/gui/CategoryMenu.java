@@ -45,7 +45,7 @@ public final class CategoryMenu extends Menu {
 
     @Override
     protected @NotNull Component title() {
-        return Component.text("Mental", Brand.PRIMARY, TextDecoration.BOLD)
+        return Component.text("Battle Motion", Brand.PRIMARY, TextDecoration.BOLD)
                 .append(Component.text(" · ", Brand.MUTED))
                 .append(Component.text(category.displayName(), theme.accent()));
     }
@@ -63,7 +63,7 @@ public final class CategoryMenu extends Menu {
         List<Tile> tiles = new ArrayList<>();
         if (category == Category.SYSTEM) {
             tiles.add(Tile.of(Buttons.nav("COMPASS", "Compatibility",
-                    "Anticheat posture — how Mental yields to a prediction anticheat."),
+                    "Anticheat posture — how Battle Motion yields to a prediction anticheat."),
                     click -> navigate(viewer, new CompatibilityMenu(ctx))));
             tiles.add(Tile.of(Buttons.nav("REPEATER", "Debug",
                     "Verbose logging channels, streamed to console or your own chat."),

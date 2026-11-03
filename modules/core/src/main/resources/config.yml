@@ -346,8 +346,7 @@ modules:
 
   # ── Combat Test 8c ───────────────────────────────────────────────────────────
   # Thirteen modules that import Java Edition's Combat Test 8c (the 1.16_combat-6
-  # experimental snapshot) server-side — see docs/superpowers/specs/
-  # 2026-07-18-combat-test-8c-design.md. Every one defaults OFF (era-exact no-op
+  # experimental snapshot) server-side — see project/docs/combat-test-8c.md. Every one defaults OFF (era-exact no-op
   # when disabled) and is combat-rules-plugin-agnostic (enabling the same rule in
   # two plugins double-applies — pick one). The two that carry their own numbers
   # read the weapon-attack-speeds / charged-attacks sections below; the rest are

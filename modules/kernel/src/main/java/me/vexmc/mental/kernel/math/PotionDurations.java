@@ -12,7 +12,7 @@ import java.util.Map;
  * converted here to ticks (×20):
  * {@code BukkitOldCombatMechanics/src/main/resources/config.yml}. OCM's table is
  * the de-facto reference for the pre-1.9 durations; per
- * {@code docs/superpowers/plans/2026-06-14-ocm-ground-truth.md §5} it is treated
+ * the OCM ground-truth notes (§5) it is treated
  * as the agreed reference (not independently decompile-verified).</p>
  *
  * <p>This is a pure lookup — no Bukkit server registry, fully unit-testable. The

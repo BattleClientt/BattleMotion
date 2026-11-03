@@ -45,7 +45,7 @@ public final class DashboardMenu extends Menu {
 
     @Override
     protected @NotNull Component title() {
-        return Component.text("Mental", Brand.PRIMARY).decoration(TextDecoration.BOLD, true);
+        return Component.text("Battle Motion", Brand.PRIMARY).decoration(TextDecoration.BOLD, true);
     }
 
     @Override
@@ -132,7 +132,7 @@ public final class DashboardMenu extends Menu {
             }
         }
         Palette.Theme home = Palette.home();
-        Icon plate = Buttons.title("NETHER_STAR", "Mental");
+        Icon plate = Buttons.title("NETHER_STAR", "Battle Motion");
         plate.lore("Latency-compensated 1.7.10 combat", Brand.MUTED);
         plate.blank();
         plate.lore(Buttons.kv("Version", ctx.plugin().getDescription().getVersion(), home.accent()));

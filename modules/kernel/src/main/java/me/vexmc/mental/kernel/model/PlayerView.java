@@ -38,7 +38,7 @@ public record PlayerView(UUID id, int entityId, TickStamp at,
      * residual and the measuredVx/Vz drift signal, so the capture seams bound the
      * ledger's runaway free-fall by the real hover. A view built without it (every
      * pre-fix construction and every test) leaves the clamp inert — byte-identical.
-     * See {@code docs/superpowers/research/2026-07-10-downward-kb-and-stacking-diagnoses.md}.
+     * See the downward-knockback and stacking diagnoses (upstream research notes).
      */
     public PlayerView(UUID id, int entityId, TickStamp at,
                       Decay.Motion motion, boolean grounded, double slipperiness,

@@ -126,7 +126,7 @@ public final class PlatformProfile {
                 "no mid-pass knockback mirror", () -> caps.knockbackEvent() ? Boolean.TRUE : null));
         OptionalSince<Boolean> projectileRestored = OptionalSince.resolve(
                 "flag:projectile_kb_restored", "1.21.2", Boolean.FALSE,
-                "Mental substitutes projectile knockback", () -> env.isAtLeast(1, 21, 2) ? Boolean.TRUE : null);
+                "Battle Motion substitutes projectile knockback", () -> env.isAtLeast(1, 21, 2) ? Boolean.TRUE : null);
         entries.add(projectileRestored);
         entries.add(OptionalSince.resolve("marker:join_protection_layout", "1.21.2", Boolean.FALSE,
                 "the pre-1.21.2 join-invulnerability layout", () -> env.isAtLeast(1, 21, 2) ? Boolean.TRUE : null));

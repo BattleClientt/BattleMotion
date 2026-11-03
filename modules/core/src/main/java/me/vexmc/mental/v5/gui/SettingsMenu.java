@@ -45,7 +45,7 @@ public final class SettingsMenu extends Menu {
 
     @Override
     protected @NotNull Component title() {
-        return Component.text("Mental", Brand.PRIMARY, TextDecoration.BOLD)
+        return Component.text("Battle Motion", Brand.PRIMARY, TextDecoration.BOLD)
                 .append(Component.text(" · ", Brand.MUTED))
                 .append(Component.text(feature.displayName(), theme.accent()));
     }
